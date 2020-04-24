@@ -1,17 +1,36 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+  <ion-toolbar color="primary">
+  <ion-buttons slot="primary">
+  <ion-icon name="funnel-outline"></ion-icon>
+  <ion-select [(ngModel)]="friendFilter" name="friendFilter">
+  <ion-select-option value="Everyone">Everyone</ion-select-option>
+  <ion-select-option *ngFor="let friend of myFriends" [value]="friend.name">{{friend.name}}</ion-select-option>
+  </ion-select>
+  </ion-buttons>
+  
+  <ion-title>
+  Feed
+  </ion-title>
   </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
   </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
-</ion-content>
+  
+  <ion-content>
+  <ion-card *ngFor="let message of getMessagesToDisplay()" [class.my-message]="message.from == shared.userName ">
+  <div *ngIf="message.from"></div>
+  <ion-card-content *ngIf="message.imageUrl">
+  <img src="{{message.imageUrl}}">
+  </ion-card-content>
+  
+  
+  <ion-card-header>
+  <ion-card-title>{{message.from}}</ion-card-title>
+  <ion-card-subtitle>{{message.text}}</ion-card-subtitle>
+  </ion-card-header>
+  
+  </ion-card>
+  
+  <!--
+  <h1>Hello ionic</h1>
+  <button>This is an html button</button>
+  <ion-button color="secondary">This is an ionic btn</ion-button>-->
+  </ion-content>

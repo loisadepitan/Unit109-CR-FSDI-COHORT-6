@@ -1,17 +1,35 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Tab 2
+      Post New Message
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="stacked">Your Message</ion-label>
+        <ion-input [(ngModel)]="post.text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Image URL:</ion-label>
+        <ion-input [(ngModel)]="post.imageUrl"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">To:</ion-label>
+        <ion-select [(ngModel)]="post.to">
+        <ion-select-option value="Everyone">Everyone</ion-select-option>
+        <ion-select-option *ngFor="let friend of myFriends" [value]="friend.name">{{friend.name}}</ion-select-option>
+      </ion-select>
+      </ion-item>
+
+      <ion-button (click)="sendMessage()" expand="block" color="tertiary">Submit Post</ion-button>
+
+    </ion-card-content>
+  </ion-card>
 </ion-content>
